@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>BLOB Donwload</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/checkbox.min.js"></script>
+    </head>
+<body>
+<div class="ui container">
+    <h1>Blob Downloader</h1>
+    <div class="ui column">
+        <div class="ui form">
+            <div class="field">
+                <label>Donwload filename:</label>
+                <div class="ui right labeled input">
+                    <input type="text" id="text-filename" value="" placeholder="input-download-filename">
+                    <div class="ui basic label" id="label-extension">.bin</div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Content type</label>
+                <select name="mime_type" id="select-mime-type" class="ui search dropdown">
+                    <option value="">汎用タイプ</option>
+                </select>
+            </div>
+
+        <div class="ui field grid">
+            <div class="ui four wide segment">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="base64" tabindex="0" id="chk-base64" value="1" checked>
+                    <label for="chk-base64">Base64</label>
+                </div>
+            </div>
+            <div class="ui four wide">
+                <div class="ui field">
+                    <button type="button" id="btn-file" class="ui teal button">Load from file</button>
+                </div>
+            </div>
+        </div>
+
+            <div class="field">
+                <label>Content</label>
+                <textarea id="blob-content"></textarea>
+            </div>
+        </div>
+        <a href="#" id="btn-download" class="ui primary button">Donwload</a>
+
+        <div>
+            <a href="#" class="ui link link-sample-data" data-type="audio">
+                <label>Load Sample<i class="headphones icon"></i></label>
+            </a>
+            <a href="#" class="ui link link-sample-data" data-type="image">
+                <label>Load Sample<i class="image icon"></i></label>
+            </a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="scripts/blobDL/main.js"></script>
+</body>
+</html>
