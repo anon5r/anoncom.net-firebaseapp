@@ -1,41 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="theme-color" content="#000000" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>anoncom.net</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74701-5"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    //<!--
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-74701-5');
+    //-->
+  </script>        <link rel="apple-touch-icon" href="/images/logo_icon_57.png">
+  <link rel="stylesheet" type="text/css" href="/styles/top.css?1">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NF7SZXR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header>
+  <!-- <div class="logo"></div> -->
+  <div class="logo">
+    <svg version="1.1" width="100%" height="100%">
+      <defs>
+        <linearGradient id="gradient-text" x1="0%" x2="0%" y1="0%" y2="100%">
+          <stop stop-color="#efefef" offset="0%"/>
+          <stop stop-color="#cdcdcd" offset="50%"/>
+          <stop stop-color="#acacac" offset="60%"/>
+          <stop stop-color="#919191" offset="95%"/>
+        </linearGradient>
+        <linearGradient id="gradient-reflect" x1="0%" x2="0%" y1="0%" y2="100%">
+          <stop stop-color="#666666" stop-opacity="0" offset="25%"/>
+          <stop stop-color="#acacac" stop-opacity="0.8" offset="80%"/>
+        </linearGradient>
+        <filter id="shadow" filterUnits="userSpaceOnUse">
+          <feGaussianBlur stdDeviation="0.5"/>
+          <feOffset dx="0" dy="2" result="blur"/>
+          <feFlood flood-color="#aaaaaa" flood-opacity="0.8"/>
+          <feComposite in2="blur" operator="in" result="colorShadow"/>
+          <feComposite in="SourceGraphic" in2="colorShadow" operator="over"/>
+        </filter>
+        <mask id="mask-reflect" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+          <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-reflect)"/>
+        </mask>
+      </defs>
+      <rect id="text" stroke="none" fill="none" width="100%" height="200"/>
+      <g id="logo-text">
+        <text x="50%" y="0" dy="1.0em" font-size="110" font-family="Verdana" filter="url(#shadow)"
+              fill="url(#gradient-text)" stroke="none" style="text-anchor:middle">
+          <tspan>anoncom.net</tspan>
+        </text>
+      </g>
+      <g transform="translate(0 225) scale(1 -1)" mask="url(#mask-reflect)">
+        <use xlink:href="#logo-text" y="0"/>
+      </g>
+    </svg>
+  </div>
+</header>
+<div>Maintenance mode...</div>
+<nav>
+  <div class="menu">
+    <menu>
+      <ul>
+        <li><a href="https://blog.anoncom.net">anoncom blog</a></li>
+        <li><span class="unavailable">Bing background image viewer</span></li>
+        <li><span class="unavailable">とり☆すた <span style="font-size:x-small;">～ごにょごにょ～</span></span>
+        </li>
+        <!-- <li><a href="http://labs.anoncom.net/">anoncom.Lab</a></li> -->
+      </ul>
+      <ul>
+        <li><span class="unavailable">Network and Web tools</span></li>
+        <li><span class="unavailable">ソフトウェア</span></li>
+        <li><span class="unavailable">About</span></li>
+        <!-- <li><a href="#" onclick="alert('There is noting'); return false;">&nbsp;</a></li> -->
+      </ul>
+    </menu>
+  </div>
+</nav>
+<footer>
+  &copy;2019 <a href="https://anoncom.net">anoncom.net</a><br>
+</footer>
+</body>
 </html>
+
