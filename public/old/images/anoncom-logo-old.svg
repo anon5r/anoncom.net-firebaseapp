@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%">
+    <defs>
+        <linearGradient id="gradient-text" x1="0%" x2="0%" y1="0%" y2="100%">
+            <stop stop-color="#cbcbcb" offset="0%"/>
+            <stop stop-color="#919191" offset="50%"/>
+            <stop stop-color="#757575" offset="60%"/>
+            <stop stop-color="#222222" offset="95%"/>
+        </linearGradient>
+        <linearGradient id="gradient-reflect" x1="0%" x2="0%" y1="0%" y2="100%">
+            <stop stop-color="#222222" stop-opacity="0" offset="25%"/>
+            <stop stop-color="#757575" stop-opacity="0.8" offset="80%"/>
+        </linearGradient>
+        <filter id="shadow" filterUnits="userSpaceOnUse">
+            <feGaussianBlur stdDeviation="0.5"/>
+            <feOffset dx="0" dy="2" result="blur"/>
+            <feFlood flood-color="#000000" flood-opacity="0.8"/>
+            <feComposite in2="blur" operator="in" result="colorShadow"/>
+            <feComposite in="SourceGraphic" in2="colorShadow" operator="over"/>
+        </filter>
+        <mask id="mask-reflect" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-reflect)"/>
+        </mask>
+    </defs>
+    <rect id="text" stroke="none" fill="none" width="100%" height="200"/>
+    <g id="logo-text">
+        <text x="50%" y="0" dy="1.0em" font-size="1000%" font-family="Google Sans,Verdana" filter="url(#shadow)"
+              fill="url(#gradient-text)" stroke="none" style="text-anchor:middle">
+            <tspan>anoncom.net</tspan>
+        </text>
+    </g>
+    <g transform="translate(0 225) scale(1 -1)" mask="url(#mask-reflect)">
+        <use xlink:href="#logo-text" y="0"/>
+    </g>
+</svg>
