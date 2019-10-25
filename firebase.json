@@ -14,46 +14,13 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "redirects": [{
-      "source": "/tools",
-      "destination": "/",
-      "type" : 302
-    },{
-      "source": "/tools/*",
-      "destination": "/",
-      "type" : 302
-    },{
-      "source": "/certs/*",
-      "destination": "/",
-      "type" : 302
-    },{
-      "source": "/about",
-      "destination": "/",
-      "type" : 302
-    },{
-      "source": "/bing",
-      "destination": "/",
-      "type" : 302
-    },{
-      "source": "/chromecast",
-      "destination": "/",
-      "type" : 302
-    },{
-      "source": "/software",
-      "destination": "/",
-      "type" : 302
-    },{
-      "source": "/download/*",
-      "destination": "/",
-      "type" : 302
-    },{
-      "source": "/images/*",
-      "destination": "/",
-      "type" : 302
-    }]
+    ]
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   }
 }
