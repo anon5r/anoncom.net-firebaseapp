@@ -4,7 +4,9 @@ window.addEventListener("DOMContentLoaded",()=>{
     const labelExtension=document.getElementById("label-extension");
     const textContent=document.getElementById('blob-content');
     const checkBase64=document.getElementById('chk-base64');
+    const checkDataUri=document.getElementById('chk-with-data-uri');
     let mimeOptions;
+    let loadedContent,loadedFilename,loadedMimeType;
 
     import('/scripts/blobDL/modules/mime-type.mjs').then(module => {
         let mimeType = module.mimeType;
@@ -31,6 +33,7 @@ window.addEventListener("DOMContentLoaded",()=>{
     document.getElementById('btn-download').addEventListener('click',function(e){
         let content = textContent.value;
         let isBase64 = checkBase64.checked;
+        let isDataURI = checkDataUri.checked;
         let filename = 'unknown';
         let textExtension = document.getElementById('label-extension').innerText;
         let mimeOptions = document.querySelectorAll('#'+mimeSelect.id+' option');
@@ -52,8 +55,9 @@ window.addEventListener("DOMContentLoaded",()=>{
                 buff[i] = bin.charCodeAt(i);
             }
             blob = new Blob([buff.buffer], {type: mimeTypeString});
+
         } else
-            blob = new Blob([content],{type:mimeTypeString});
+            blob = new Blob([content], {type: mimeTypeString});
 
         if (typeof window.navigator.msSaveBlob === 'function')
             window.navigator.msSaveBlob(blob,filename);
@@ -72,8 +76,12 @@ window.addEventListener("DOMContentLoaded",()=>{
             e.preventDefault();
             import('/scripts/blobDL/modules/sample_data.mjs').then(data => {
                 let sample = data.sample[elem.dataset.type];
+                loadedContent = sample.content;
                 textFilename.value = sample.filename;
-                textContent.value = sample.content;
+                if (checkDataUri.checked)
+                    textContent.value = 'data:' + sample.type + ';base64,' + loadedContent;
+                else
+                    textContent.value = loadedContent;
                 for (let i in mimeOptions) {
                     if (mimeOptions[i].value === sample.type) {
                         mimeSelect.selectedIndex = i;
@@ -87,14 +95,27 @@ window.addEventListener("DOMContentLoaded",()=>{
     document.getElementById('btn-file').addEventListener('click', async ()=>{
         const file = await openFileDialog();
         const content = await readAsText(file);
-        textContent.value = content;
-        textContent.innerText = content;
+        loadedContent = content;
+        if (checkDataUri.checked) {
+            textContent.value = 'data:' + file.type + ';base64,' + content;
+            textContent.innerText = 'data:' + file.type + ';base64,' + content;
+        } else {
+            textContent.value = content;
+            textContent.innerText = content;
+        }
     });
+    checkDataUri.addEventListener('change',function(e){
+        if (this.checked) {
+            textContent.value = 'data:' + loadedMimeType + ';base64,' + loadedContent;
+        } else {
+            textContent.value = loadedContent;
+        }
+    })
     const openFileDialog = () => {
         return new Promise(resolve => {
             const input = document.createElement('input');
             input.type = 'file';
-            input.accept = 'text/*,image/png,image/jpeg,image/gif,image/webp,audio/mp3,audio/aac,audio/aacp,audio/wave,audio/mp4,audio/3gpp,audio/3gpp2';
+            input.accept = 'text/*,image/png,image/jpeg,image/gif,image/webp,image/svg+xml,audio/mp3,audio/aac,audio/aacp,audio/wave,audio/mp4,audio/3gpp,audio/3gpp2';
             input.onchange = e => {
                 let file;
                 if (e.target == null && typeof e.path[0].files[0] !== 'undefined')
@@ -120,8 +141,10 @@ window.addEventListener("DOMContentLoaded",()=>{
                     result = result.substr(result.indexOf(';base64,')+8);
                 }
                 resolve(result);
+                loadedFilename = file.name.substring(0,file.name.lastIndexOf('.'));
+                loadedMimeType = file.type;
                 labelExtension.innerText = file.name.substring(file.name.lastIndexOf('.'));
-                textFilename.value = file.name.substring(0,file.name.lastIndexOf('.'));
+                textFilename.value = loadedFilename;
                 for (let i in mimeOptions) {
                     if (mimeOptions[i].value === file.type) {
                         mimeSelect.selectedIndex = i;
